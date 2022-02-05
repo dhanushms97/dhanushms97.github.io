@@ -1,0 +1,151 @@
+#banner-section{
+  position: relative;
+  width: 100%;
+
+  .carousel{
+    position: relative;
+    width: 100%;
+    // padding-top: 20%; // ex => using padding-top for responsive
+    height: 370px;  // ex => fixed height
+    overflow: hidden;
+  }
+
+  /**
+   * Indicators
+   */
+
+  .indicators{
+    width:100%;
+    position: absolute;
+    bottom:0;
+    z-index: 4;
+    padding:0;
+    text-align: center;
+  }
+
+  .indicators li{
+    width: 10px;
+    height: 10px;
+    border-radius: 8px;
+    background: #fff;
+    margin-right: 15px;
+    opacity: .8;
+    cursor: pointer;
+    border: 2px solid #fff;
+    display: inline-block;
+    list-style-type: none;
+    transition: background 0.3s ease-out;
+  }
+
+  .indicators li:hover{
+    background-color: #00ab00
+  }
+
+  .indicators li.active{
+    background-color: #7edd32
+  }
+
+  .indicators li.active:hover{
+    background-color: #7edd32
+  }
+
+  /**
+   * arrows
+   */
+
+  .arrow{
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    top: 50%;
+    z-index:5;
+    border-top: 3px solid #00ab00;
+    border-right: 3px solid #00ab00;
+    cursor: pointer;
+    transition: border-color 0.3s ease-out;
+
+    &:hover{
+      border-color: #7edd32;
+    }
+  }
+
+  .arrow-left{
+    left: 20px;
+    transform: rotate(225deg);
+  }
+
+  .arrow-right{
+    right: 20px;
+    transform: rotate(45deg);
+  }
+}
+
+.carousel-inner{
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top:0;
+  left: 0;
+
+  /**
+   * use z-index and opacity to control slide (with left right)
+   * for css3 and js animataion
+   */
+
+  .slide{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top:0;
+    right:0;
+    left:0;
+    z-index: 1;
+    opacity: 0;
+
+    img{
+      width: 100%;  // ex width
+      height: 100%; // ex height
+    }
+  }
+
+  .slide.active,
+  .slide.left,
+  .slide.right{
+    z-index: 2;
+    opacity: 1;
+  }
+
+  /**
+    change the left:0 property of the slide to left:auto
+   */
+
+  .js-reset-left{left:auto}
+
+  /**
+   * css3 animation styles
+   */
+
+  .slide.left{
+    left:-100%;
+    right:0;
+  }
+
+  .slide.right{
+    right:-100%;
+    left: auto;
+  }
+}
+
+/**
+ * css3 transition for animation
+ */
+
+.transition .slide.left{left:0%}
+.transition .slide.right{right:0%}
+
+.transition .slide.shift-right{right: 100%;left:auto}
+.transition .slide.shift-left{left: 100%;right:auto}
+
+.transition .slide{
+  transition-property: right, left, margin;
+}
